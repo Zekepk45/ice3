@@ -6,7 +6,7 @@
 --|
 --|     Our **user** will input the following:
 --|
---|     - $C_{in}$ on switch 0
+--     - $C_{in}$ on switch 0
 --|     - $A$ on switches 4-1
 --|     - $B$ on switches 15-12
 --|
@@ -47,7 +47,9 @@ entity top_basys3 is
 	port(
 		-- Switches
 		sw		:	in  std_logic_vector(15 downto 0);
-		
+		i_Cin   :   in  std_logic_vector(0 downto 0);
+		i_A     :   in  std_logic_vector(4 downto 0);
+		i_B     :   in  std_logic_vector(15 downto 12);
 		-- LEDs
 		led	    :	out	std_logic_vector(15 downto 0)
 	);
