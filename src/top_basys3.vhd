@@ -59,7 +59,7 @@ architecture top_basys3_arch of top_basys3 is
     component ripple_adder is
         port(
             Cin   :   in  std_logic;
-		    A     :   in  std_logic_vector(4 downto 1); -- sw(0) is broken on my fpga
+		    A     :   in  std_logic_vector(5 downto 2); -- sw(0) is broken on my fpga
 		    B     :   in  std_logic_vector(15 downto 12);
 		    S     :   out std_logic_vector(3 downto 0);
 		    Cout  :   out std_logic
