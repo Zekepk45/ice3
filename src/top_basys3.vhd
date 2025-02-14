@@ -47,9 +47,7 @@ entity top_basys3 is
 	port(
 		-- Switches
 		sw		:	in  std_logic_vector(15 downto 0);
-		i_Cin   :   in  std_logic_vector(0 downto 0);
-		i_A     :   in  std_logic_vector(4 downto 0);
-		i_B     :   in  std_logic_vector(15 downto 12);
+		
 		-- LEDs
 		led	    :	out	std_logic_vector(15 downto 0)
 	);
@@ -58,12 +56,27 @@ end top_basys3;
 architecture top_basys3_arch of top_basys3 is 
 	
     -- declare the component of your top-level design
-
+    component ripple_adder is
+        port(
+            Cin   :   in  std_logic;
+		    A     :   in  std_logic_vector(4 downto 1); -- sw(0) is broken on my fpga
+		    B     :   in  std_logic_vector(15 downto 12);
+		    S     :   out std_logic_vector(3 downto 0);
+		    Cout  :   out std_logic
+        );
+    end component ripple_adder;
     -- declare any signals you will need	
   
 begin
 	-- PORT MAPS --------------------
-   
+   ripple_adder_0: ripple_adder
+   port map(
+        A => sw(5 downto 2),
+        B => sw(15 downto 12),
+        Cin => sw(1),
+        S => led(3 downto 0),
+        Cout => led(15)
+   );
 	---------------------------------
 	
 	-- CONCURRENT STATEMENTS --------
